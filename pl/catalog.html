@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]--><head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Arhitekturbud</title>
+
+  <link rel="stylesheet" href="css/normalize.css" />
+  
+  <link rel="stylesheet" href="css/foundation.css" />
+  
+  <script src="js/jquery-1.4.2.min.js"></script>
+  <script src="js/TweenMax.min.js"></script>  
+  <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="js/scripts/load_scripts.js"></script>
+
+<style type="text/css">
+/* Preloader */
+#preloader {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:100000; /* makes sure it stays on top */
+}
+
+#status {
+	width: 200px;
+	height: 200px;
+	position: fixed;
+	left: 50%; /* centers the loading animation horizontally one the screen */
+	top: 50%; /* centers the loading animation vertically one the screen */
+	background-image: url(img/status.gif); /* path to your loading animation */
+	background-repeat: no-repeat;
+	background-position: center;
+	margin: -100px 0 0 -100px; /* is width and height divided by two */
+}
+.shadow_effect {
+	height: 100%;
+	width: 100%;
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,0.3) 30%, rgba(116,116,116,0.7) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 30%, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(116,116,116,0.7)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,0.3) 30%,rgba(116,116,116,0.7) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,0.3) 30%,rgba(116,116,116,0.7) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,0.3) 30%,rgba(116,116,116,0.7) 100%);
+	background: radial-gradient(center, ellipse cover, rgba(255,255,255,0.3) 30%,rgba(116,116,116,0.7) 100%);
+}
+
+.pattern_black {
+	background-image: url(img/dark_wall.png);
+	background-repeat: repeat;
+	height: 100%;
+	width: 100%;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 50px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+
+h1 {
+	font-size: 60px;
+	color: #FFF;
+	text-decoration: none;
+	font-family: "Wolfgang_Amadeus_Mozart";
+	text-align: center;
+	font-weight: 200;
+}
+h2 {
+	font-size: 24px;
+	color: #FFF;
+	text-decoration: none;
+	font-family: "OpenSans-CondLight";
+	text-align: center;
+	font-weight: 200;
+}
+p {
+	font-size: 16px;
+	font-weight: 100;
+	color: #FFF;
+	text-decoration: none;
+	font-family: OpenSans-CondLight;
+	line-height: 16px;
+}
+p span{
+	font-family: "Wolfgang_Amadeus_Mozart";
+	padding-right: 30px;
+	font-size: 38px;
+}
+.section .content .large-block-grid-5 li {
+	text-align: center;
+	color:#FFF;
+}
+#left_box {
+	float:right;
+	z-index: 100;
+}
+#left {
+	position: absolute;
+	background-image: url(img/left_btn_img.jpg);
+	background-repeat: no-repeat;
+	height: 147px;
+	width: 295px;
+}
+#left_hover {
+	position: relative;
+	background-image: url(img/dark_wall.png);
+	height: 147px;
+	width: 295px;
+	background-repeat: repeat;
+	text-align: justify;
+	padding-top: 35px;
+	padding-right: 35px;
+	padding-bottom: 25px;
+	padding-left: 35px;
+}
+
+#right_box {
+	float:left;
+	z-index: 100;
+}
+#right {
+	position: absolute;
+	background-image: url(img/right_btn_img.jpg);
+	background-repeat: no-repeat;
+	height: 147px;
+	width: 295px;
+}
+#right_hover {
+	position: relative;
+	background-image: url(img/dark_wall.png);
+	background-repeat: repeat;
+	height: 147px;
+	width: 295px;
+	text-align: justify;
+	padding-top: 35px;
+	padding-right: 35px;
+	padding-bottom: 25px;
+	padding-left: 35px;
+}
+
+.img {
+	z-index: 1;
+}
+.img_hover {
+	z-index: 0;
+	transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+	-o-transform: rotateX(90deg);
+	-ms-transform: rotateX(90deg);		
+}
+
+#line_black {
+	background-image: url(img/line_black.png);
+	height: 56px;
+	width: 100%;
+	margin-top: 10px;
+	z-index: 100;
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+#line  {
+	background-image: url(img/line.png);
+	height: 28px;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+	z-index: 100;
+	margin-top: -10px;
+}
+#line_scroll {
+	z-index: 100;
+	background-image: url(img/line_scroll.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 29px;
+	width: 144px;
+	margin-right: auto;
+	margin-left: auto;
+	background-size: cover;
+	margin-top: -5px;
+}
+a.share {
+	opacity:1;
+}
+
+a.share:hover {
+	opacity:0.5;
+}
+
+@media (min-width: 980px) {
+
+.top-bar-section li a:not(.button) {
+	background:transparent;
+}
+
+.top-bar {
+	padding-top:20px;
+	background:transparent;}
+
+nav.top-bar {
+	width:1000px;
+	height:70px;
+	margin-left:auto;
+	margin-right:auto;}
+		
+.divider {
+	display:none;}
+
+#logo {
+	background-image:url(img/menu_bnt_img.png);
+	background-size:cover;
+	width:503px;
+	height:87px;
+	margin-left:auto;
+	margin-right:auto;}
+			
+#menu-left {
+	width:603px;
+	height:87px;
+	position:relative;
+	top:-30px;
+	left:100px;}
+
+#menu-right {
+	width:130px;
+	height:87px;
+	position:absolute;
+	top:13px;
+	right:100px;}
+
+#left-1 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 23.25%;
+}
+
+#left-2 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 38.75%;
+}
+
+#left-3 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 54.25%;
+}
+
+#left-4 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 23.25%;
+}
+
+#left-5 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 38.75%;
+}
+
+#left-6 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 54.25%;
+}
+
+.sub-menu {
+	opacity: 0;
+	text-shadow: 1px 1px 2px #000;
+	width:70px;
+	height:70px;
+	border-radius:50%;
+	padding-top:28px;
+	margin-left:1px;
+
+background: -moz-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,1)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	
+}
+
+.sub-menu-2 {
+	opacity: 0;
+	text-shadow: 1px 1px 2px #000;
+	width:70px;
+	height:70px;
+	border-radius:50%;
+	padding-top:20px;
+	margin-left:1px;
+
+background: -moz-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,1)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	
+}
+
+}
+
+@media (min-width: 980px) and (max-width: 1250px) {
+#left-1 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	left: 4.55%;
+	top: 23.9%;
+}
+
+#left-2 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	left: 4.55%;
+	top: 39.1%;
+}
+
+#left-3 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	left: 4.55%;
+	top: 54.55%;
+}
+
+#left-4 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	right: 5.15%;
+	top: 23.6%;
+}
+
+#left-5 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	right: 5.2%;
+	top: 38.75%;
+}
+
+#left-6 {
+	height: 55px;
+	width: 55px;
+	position: absolute;
+	right: 5.2%;
+	top: 54.65%;
+}
+.sub-menu {
+	opacity: 0;
+	text-shadow: 1px 1px 2px #000;
+	width:55px;
+	height:55px;
+	border-radius:50%;
+	padding-top:18px;
+	margin-left:1px;
+
+background: -moz-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,1)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	
+}
+
+.sub-menu-2 {
+	opacity: 0;
+	text-shadow: 1px 1px 2px #000;
+	width:55px;
+	height:55px;
+	border-radius:50%;
+	padding-top:10px;
+	margin-left:1px;
+
+background: -moz-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(127,127,127,1)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* IE10+ */
+background: radial-gradient(ellipse at center, rgba(127,127,127,1) 0%,rgba(0,0,0,0.5) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#80000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	
+}
+
+#menu-right {
+	width:130px;
+	height:87px;
+	position:absolute;
+	top:13px;
+	right:100px;}
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+#left-1 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	left: 4.5%;
+	top: 22.7%;
+}
+
+#left-2 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	left: 4.5%;
+	top: 38.75%;
+}
+
+#left-3 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	left: 4.5%;
+	top: 54.25%;
+}
+
+#left-4 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	right: 5.3%;
+	top: 22.5%;
+}
+
+#left-5 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	right: 5.3%;
+	top: 38.75%;
+}
+
+#left-6 {
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	right: 5.3%;
+	top: 54.25%;
+}
+.section-container.auto section .title a,
+.section-container.auto .section .title a {
+	font-size: 19px;
+}
+#menu-right {
+	width:100%;
+	height:100%;}
+
+.sub-menu {
+	display:none;
+}
+
+.sub-menu-2 {
+	display:none;
+}
+
+}
+@media (max-width: 767px) {
+
+#logo {
+	background-image: url(img/main_logo.png);
+	background-size:cover;
+	width:193px;
+	height:45px;
+}
+
+#left_box {
+	float: none;
+	z-index: 100;
+}
+
+#left {
+	background-image: url(img/left_btn_img.jpg);
+	background-repeat: no-repeat;
+	height: 147px;
+	width: 295px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 50px;
+	position:static;
+}
+
+#right_box {
+	float: none;
+	z-index: 100;
+}
+
+#right {
+	position: absolute;
+	background-image: url(img/right_btn_img.jpg);
+	background-repeat: no-repeat;
+	height: 147px;
+	width: 295px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	position:static;
+}
+
+.center {
+	text-align:center;
+	float:none;
+}
+#menu-right {
+	width:100%;
+	height:100%;}
+
+}
+
+@media (min-width: 1251px) {
+
+#left-1 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 23.25%;
+}
+
+#left-2 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 38.75%;
+}
+
+#left-3 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	left: 4.35%;
+	top: 54.25%;
+}
+
+#left-4 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 23.25%;
+}
+
+#left-5 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 38.75%;
+}
+
+#left-6 {
+	height: 70px;
+	width: 70px;
+	position: absolute;
+	right: 4.85%;
+	top: 54.25%;
+}
+
+}
+</style>
+
+</head>
+<body>
+<!--preloader-->
+<div id="preloader">
+	<div id="status">&nbsp;</div>
+</div>
+
+<!-- Preloader -->
+<script type="text/javascript">
+	//<![CDATA[
+		$(window).load(function() { // makes sure the whole site is loaded
+			$("#status").fadeOut(); // will first fade out the loading animation
+			$("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
+		})
+	//]]>
+</script> 
+
+<div class="shadow_effect">
+<!-- Navigation -->
+ 
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+		<div id="logo"></div>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <div id="menu-left">
+      <ul>
+        <li class="divider"></li>
+        <li><a href="index.html">Strona Główna</a></li>
+        <li class="divider"></li>
+        <li><a href="about.html">O Nas</a></li>
+        <li class="divider"></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li class="divider"></li>
+        <li><a href="catalog.html">Katalog</a></li>
+        <li class="divider"></li>
+        <li><a href="tech.html">Technologia</a></li>
+        <li class="divider"></li>
+        <li><a href="contacts.html">Kontakt</a></li>
+      </ul>
+      </div>
+      
+      <div id="menu-right">
+      <ul>
+        <li class="divider"></li>
+        <li><a href="../index.html">Укр</a></li>
+        <li class="divider"></li>
+        <li><a href="../rus/index.html">Рус</a></li>
+        <li class="divider"></li>
+        <li><a href="index.html">Pl</a></li>
+      </ul>
+      </div>
+
+    </section>
+  </nav>
+ 
+  <!-- End Top Bar -->
+ 
+<br/><br/>
+  <div class="row" style="max-width:62.5em">
+    <div class="large-12 columns">
+      <h1 style="color:#000; font-size:72px">Katalog Produktów</h1>
+    </div>
+  </div>
+
+  <div id="line_black">
+  	<div id="line_scroll"></div>
+  	<div id="line"></div>
+  </div>
+  
+</div><!-- End shadow effect -->
+
+<div class="pattern_black"> 
+  
+  <div class="row">
+    <div class="large-12 columns">
+ 
+      <div class="section-container auto" data-section="">
+        <section class="section">
+          <h5 class="title"><a href="#panel1">Gzyms</a></h5>
+          <div class="content" data-slug="panel1">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/podokonniki/p_1.png" />П-37</li>
+              <li><img src="img/elements/podokonniki/p_2.png" />П-38</li>
+              <li><img src="img/elements/podokonniki/p_3.png" />П-39</li>
+              <li><img src="img/elements/podokonniki/p_4.png" />П-40</li>
+              <li><img src="img/elements/podokonniki/p_5.png" />П-41</li>
+              <li><img src="img/elements/podokonniki/p_6.png" />П-42</li>
+              <li><img src="img/elements/podokonniki/p_7.png" />П-43</li>
+              <li><img src="img/elements/podokonniki/p_8.png" />П-44</li>
+              <li><img src="img/elements/podokonniki/p_9.png" />П-45</li>
+              <li><img src="img/elements/podokonniki/p_10.png" />П-46</li>
+              <li><img src="img/elements/podokonniki/p_11.png" />П-47</li>
+              <li><img src="img/elements/podokonniki/p_12.png" />П-48</li>
+              <li><img src="img/elements/podokonniki/p_13.png" />П-49</li>
+              <li><img src="img/elements/podokonniki/p_14.png" />П-50</li>
+              <li><img src="img/elements/podokonniki/p_15.png" />П-51</li>
+              <li><img src="img/elements/podokonniki/p_16.png" />П-52</li>
+              <li><img src="img/elements/podokonniki/p_17.png" />П-53</li>
+              <li><img src="img/elements/podokonniki/p_18.png" />П-54</li>
+              <li><img src="img/elements/podokonniki/p_19.png" />П-55</li>
+              <li><img src="img/elements/podokonniki/p_20.png" />П-56</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h5 class="title"><a href="#panel2">Parapety</a></h5>
+          <div class="content" data-slug="panel2">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/karniz/ka_1.png" />К-38</li>
+              <li><img src="img/elements/karniz/ka_2.png" />К-39</li>
+              <li><img src="img/elements/karniz/ka_3.png" />К-40</li>
+              <li><img src="img/elements/karniz/ka_4.png" />К-41</li>
+              <li><img src="img/elements/karniz/ka_5.png" />К-42</li>
+              <li><img src="img/elements/karniz/ka_6.png" />К-43</li>
+              <li><img src="img/elements/karniz/ka_7.png" />К-44</li>
+              <li><img src="img/elements/karniz/ka_8.png" />К-45</li>
+              <li><img src="img/elements/karniz/ka_9.png" />К-46</li>
+              <li><img src="img/elements/karniz/ka_10.png" />К-47</li>
+              <li><img src="img/elements/karniz/ka_11.png" />К-48</li>
+              <li><img src="img/elements/karniz/ka_12.png" />К-49</li>
+              <li><img src="img/elements/karniz/ka_13.png" />К-50</li>
+              <li><img src="img/elements/karniz/ka_14.png" />К-51</li>
+              <li><img src="img/elements/karniz/ka_15.png" />К-52</li>
+              <li><img src="img/elements/karniz/ka_16.png" />К-53</li>
+              <li><img src="img/elements/karniz/ka_17.png" />К-54</li>
+              <li><img src="img/elements/karniz/ka_18.png" />К-55</li>
+              <li><img src="img/elements/karniz/ka_19.png" />К-56</li>
+              <li><img src="img/elements/karniz/ka_20.png" />К-57</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h5 class="title"><a href="#panel3">Kolumna</a></h5>
+          <div class="content" data-slug="panel3">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/kolony/ko_1.png" />КК-1</li>
+              <li><img src="img/elements/kolony/ko_2.png" />КК-2</li>
+              <li><img src="img/elements/kolony/ko_3.png" />КК-3</li>
+              <li><img src="img/elements/kolony/ko_4.png" />КК-4</li>
+              <li><img src="img/elements/kolony/ko_5.png" />КК-5</li>
+              <li><img src="img/elements/kolony/ko_6.png" />КК-6</li>
+              <li><img src="img/elements/kolony/ko_7.png" />КО-1</li>
+              <li><img src="img/elements/kolony/ko_8.png" />КО-2</li>
+              <li><img src="img/elements/kolony/ko_9.png" />КО-3</li>
+              <li><img src="img/elements/kolony/ko_10.png" />КО-4</li>
+              <li><img src="img/elements/kolony/ko_11.png" />НК-1</li>
+              <li><img src="img/elements/kolony/ko_12.png" />НК-2</li>
+              <li><img src="img/elements/kolony/ko_13.png" />НК-3</li>
+              <li><img src="img/elements/kolony/ko_14.png" />ВК-1</li>
+              <li><img src="img/elements/kolony/ko_15.png" />ВК-2</li>
+              <li><img src="img/elements/kolony/ko_16.png" />ВК-3</li>
+              <li><img src="img/elements/kolony/ko_17.png" />ВК-4</li>
+              <li><img src="img/elements/kolony/ko_18.png" />ВК-5</li>
+              <li><img src="img/elements/kolony/ko_19.png" />ВК-6</li>
+              <li><img src="img/elements/kolony/ko_20.png" />ВК-7</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h5 class="title"><a href="#panel4">Uchwyt i zamek</a></h5>
+          <div class="content" data-slug="panel4">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/kron/kr_1.png" />КН-18</li>
+              <li><img src="img/elements/kron/kr_2.png" />КН-19</li>
+              <li><img src="img/elements/kron/kr_3.png" />КН-20</li>
+              <li><img src="img/elements/kron/kr_4.png" />КН-6</li>
+              <li><img src="img/elements/kron/kr_5.png" />КН-14</li>
+              <li><img src="img/elements/kron/kr_6.png" />КН-15</li>
+              <li><img src="img/elements/kron/kr_7.png" />КН-21</li>
+              <li><img src="img/elements/kron/kr_8.png" />КН-22</li>
+              <li><img src="img/elements/kron/kr_9.png" />КЗ-16</li>
+              <li><img src="img/elements/kron/kr_10.png" />КЗ-17</li>
+              <li><img src="img/elements/kron/kr_11.png" />КЗ-9</li>
+              <li><img src="img/elements/kron/kr_12.png" />КЗ-18</li>
+              <li><img src="img/elements/kron/kr_13.png" />КЗ-12</li>
+              <li><img src="img/elements/kron/kr_14.png" />КЗ-13</li>
+              <li><img src="img/elements/kron/kr_15.png" />КЗ-14</li>
+              <li><img src="img/elements/kron/kr_16.png" />КЗ-15</li>
+              <li><img src="img/elements/kron/kr_17.png" />КЗ-19</li>
+              <li><img src="img/elements/kron/kr_18.png" />КЗ-20</li>
+              <li><img src="img/elements/kron/kr_19.png" />КЗ-21</li>
+              <li><img src="img/elements/kron/kr_20.png" />КЗ-22</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h5 class="title"><a href="#panel5">Kształtki</a></h5>
+          <div class="content" data-slug="panel5">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/molding/m_1.png" />М-8</li>
+              <li><img src="img/elements/molding/m_2.png" />М-9</li>
+              <li><img src="img/elements/molding/m_3.png" />М-10</li>
+              <li><img src="img/elements/molding/m_4.png" />М-11</li>
+              <li><img src="img/elements/molding/m_5.png" />М-12</li>
+              <li><img src="img/elements/molding/m_6.png" />М-13</li>
+              <li><img src="img/elements/molding/m_7.png" />М-14</li>
+              <li><img src="img/elements/molding/m_8.png" />М-15</li>
+              <li><img src="img/elements/molding/m_9.png" />М-16</li>
+              <li><img src="img/elements/molding/m_10.png" />М-17</li>
+              <li><img src="img/elements/molding/m_11.png" />М-18</li>
+              <li><img src="img/elements/molding/m_12.png" />М-19</li>
+              <li><img src="img/elements/molding/m_13.png" />М-20</li>
+              <li><img src="img/elements/molding/m_14.png" />М-21</li>
+              <li><img src="img/elements/molding/m_15.png" />М-22</li>
+              <li><img src="img/elements/molding/m_16.png" />М-23</li>
+              <li><img src="img/elements/molding/m_17.png" />М-24</li>
+              <li><img src="img/elements/molding/m_18.png" />М-25</li>
+              <li><img src="img/elements/molding/m_19.png" />М-2</li>
+              <li><img src="img/elements/molding/m_20.png" />М-26</li>
+            </ul>
+          </div>
+        </section>
+        <section class="section">
+          <h5 class="title"><a href="#panel6">Elementy cokołowe</a></h5>
+          <div class="content" data-slug="panel6">
+            <ul class="large-block-grid-5">
+              <li><img src="img/elements/cokol/c_1.png" />ЦК-7</li>
+              <li><img src="img/elements/cokol/c_2.png" />ЦК-8</li>
+              <li><img src="img/elements/cokol/c_3.png" />ЦК-1</li>
+              <li><img src="img/elements/cokol/c_4.png" />ЦК-9</li>
+              <li><img src="img/elements/cokol/c_5.png" />ЦК-10</li>
+              <li><img src="img/elements/cokol/c_6.png" />ЦК-11</li>
+              <li><img src="img/elements/cokol/c_7.png" />ЦК-5</li>
+              <li><img src="img/elements/cokol/c_8.png" />ЦК-12</li>
+              <li><img src="img/elements/cokol/c_9.png" />ЦК-13</li>
+              <li><img src="img/elements/cokol/c_10.png" />ЦК-14</li>
+              <li><img src="img/elements/cokol/c_11.png" />ЦК-15</li>
+              <li><img src="img/elements/cokol/c_12.png" />ЦК-16</li>
+              <li><img src="img/elements/cokol/c_13.png" />ЦК-17</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+	<div class="row">
+      <div class="large-12 columns">
+        <h2><a href="http://www.arhitecturbud.com/arhitecturbud-elements.zip">Rozwinięta lista standardowych elementów</a></h2>
+      </div>
+    </div>
+    
+  </div>   
+  <footer class="row">
+  <div class="large-12 columns"><hr />
+      <div class="row">
+
+        <div class="large-4 columns center">
+          <div class="row">
+            <div class="large-8 columns">
+              <div class="row">
+                <div class="large-12 columns" style="text-align:center; margin-top:15px; margin-bottom:13px">
+                  <a href="#" style="font-size:18px">arhitecturbud@ukr.net</a>
+                </div>
+              </div>
+              <div class="row hide-for-small">
+                <div class="large-3 columns" style="padding-left:10px; padding-right:0px">
+                  <a class="share" href="#"><img src="img/share_vk.png" /></a>
+                </div>
+                <div class="large-3 columns" style="padding-left:10px; padding-right:0px">
+                  <a class="share" href="#"><img src="img/share_facebook.png" /></a>
+                </div>
+                <div class="large-3 columns" style="padding-left:10px; padding-right:0px">
+                  <a class="share" href="#"><img src="img/share_twitter.png" /></a>
+                </div>
+                <div class="large-3 columns" style="padding-left:10px; padding-right:0px">
+                  <a class="share" href="#"><img src="img/share_g.png" /></a>
+                </div>
+              </div>
+            </div>
+            <div class="large-4 columns hide-for-small">
+              <img src="img/inc.png" />
+            </div>
+          </div>
+	        <hr class="show-for-small" />  
+        </div>
+
+        <div class="large-4 columns center hide-for-small">
+          <img src="img/a.png" style="margin-top:-10px"/>
+          <p style="font-size:13px; line-height:10px; text-align:center">Zastosowanie materiałów z zasobu możliwe jest tylko za pisemną zgodą właściciela</p>
+          <p style="font-size:15px; line-height:6px; text-align:center; margin:0px; padding:0px">2013 &copy; Wszelkie prawa zastrzeżone.</p>
+          <p style="font-size:15px; line-height:35px; text-align:center; margin:0px; padding:0px">Projekt został opracowany przez agencję <a href="http://www.core.lviv.ua">CORE</a></p>
+        </div>
+ 
+        <div class="large-4 columns center">
+            <img src="img/tel.png"/>
+        </div>
+ 
+      </div><hr />
+  </div>
+  </footer>
+
+</div><!-- End black pattern -->
+
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/foundation.min.js"></script>
+  
+  <script>
+    $(document).foundation();
+  </script>
+
+</body>
+</html>
